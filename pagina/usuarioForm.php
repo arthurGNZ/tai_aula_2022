@@ -33,7 +33,7 @@ include "../database/db.php" ?>
     ?>
         <h2>Formulário Cliente</h2>
     
-    <form action="index.php" method="post">
+    <form action="usuarioForm.php" method="post">
         <input type="hidden" name="id" value="<?php echo !empty($result->id)?$result->id:"" ?>"/>
         <label> Nome </label>
         <input type="text" id="nome " name="nome" value="<?php echo !empty($result->id->nome)?$result->nome:"" ?>"/>
