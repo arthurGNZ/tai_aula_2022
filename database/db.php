@@ -23,5 +23,36 @@ class BD{
         $st->execute();
         return $st;
     }
-}
-?>
+    public function insert ($dados){
+            $sql = "INSERT INTO usuario(nome,telefone,cpf) VALUES(?,?,?)";
+            $conn = $this->conn();
+            $stmt = $conn->prepare($sql);
+            $arrayDados= [$dados['nome'],$dados['telefone'],$dados['cpf']];
+            $stmt->execute($arrayDados);
+            return $stmt;
+        }
+    public function update ($dados){
+            $sql = "UPDATE usuario SET 'nome'=? 'telefone'=? 'cpf'=? WHERE 'id'=?";
+            $conn = $this->conn();
+            $stmt = $conn->prepare($sql);
+            $arrayDados = [$dados['nome'],$dados['telefone'],$dados['cpf'], $dados['id']];
+            $stmt->execute($arrayDados);
+            return $stmt;
+    }
+    public function delete ($id){
+        $sql = "DELETE FROM usuario WHERE 'id'=?";
+        $conn = $this->conn();
+        $stmt = $conn->prepare($sql);
+        $arrayDados = [$id];
+        $stmt->execute($arrayDados);
+        return $stmt;
+    }
+    public function find ($id){
+        $sql = "SELECT * FROM usuario WHERE id=?";
+        $conn = $this->conn();
+        $stmt = $conn->prepare($sql);
+        $arrayDados = [$id];
+        $stmt->execute($arrayDados);
+        return $stmt->fetchObject();
+    }
+    }
